@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+{{ message }}
+{% endfor %}
+
+{% if name %}
+    <h1>Hello World</h1>
+{% else %}
+    <h1>User List:</h1><br>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control") }}
+        <br/>
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control") }}
+        <br/>
+        <br/>
+        {{ form.submit(class="btn btn-primary") }}
+        
+    </form>
+    <br/>
+    <br/>
+    {% for users in our_users %}
+     {{users.id}} - {{users.name}} - {{users.email}} -{{ users.date_added }} </br>
+    {% endfor %}
+{% endif %}
+{% endblock %} 
